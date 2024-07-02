@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Exceptions\HttpException;
 use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
