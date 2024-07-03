@@ -17,11 +17,4 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->reportable(function (HandlerException $handlerException) {
-            info('HTTP Error: ' . $handlerException->getMessage());
-        });
-        $exceptions->reportable(function (HandlerException $handlerException) {
-            info('Erro: ' . $handlerException->getMessage());
-        });
-        // https://www.itsolutionstuff.com/post/exception-error-handling-in-laravel-11example.html
     })->create();
