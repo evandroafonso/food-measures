@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Exceptions\HttpException;
+use App\Exceptions\HandlerException;
 
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -17,9 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->reportable(function (HttpException $httpException) {
-            info('HTTP Error: ' . $httpException->getMessage());
+        $exceptions->reportable(function (HandlerException $handlerException) {
+            info('HTTP Error: ' . $handlerException->getMessage());
         });
-
+        $exceptions->reportable(function (HandlerException $handlerException) {
+            info('Erro: ' . $handlerException->getMessage());
+        });
         // https://www.itsolutionstuff.com/post/exception-error-handling-in-laravel-11example.html
     })->create();

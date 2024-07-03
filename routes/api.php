@@ -3,10 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth');
+use App\Http\Controllers\UserController;
 
 Route::group([
 
@@ -18,4 +15,6 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh',[AuthController::class, 'refresh']);
     Route::get('me',[AuthController::class, 'me'] );
+    Route::get('users', [UserController::class, 'index']);
+
 });
