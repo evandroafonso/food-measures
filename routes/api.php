@@ -7,11 +7,11 @@ use App\Http\Controllers\UserController;
 
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => ['api', 'auth:api'],
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->withoutMiddleware('auth:api');
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh',[AuthController::class, 'refresh']);
     Route::get('/me',[AuthController::class, 'me'] );
