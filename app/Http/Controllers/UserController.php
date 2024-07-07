@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json($this->userService->getAll());
+        return response()->json($this->userService->index());
     }
 
  /**
@@ -36,9 +36,9 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create(Request $request)
+    public function create(UserRequest $request): JsonResponse
     {
-
+        return response()->json($this->userService->create($request->all()));
     }
 
     /**
@@ -46,15 +46,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): JsonResponse
     {
-        return response()->json($this->userService->create($request->all()));
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        return response()->json($this->userService->show($id));
     }
 
     /**

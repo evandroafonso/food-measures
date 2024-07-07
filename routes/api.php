@@ -16,6 +16,7 @@ Route::group([
     Route::post('/refresh',[AuthController::class, 'refresh']);
     Route::get('/me',[AuthController::class, 'me'] );
     Route::get('/users', [UserController::class, 'index']);
-    Route::post('/users', [UserController::class, 'store']);
+    Route::post('/users', [UserController::class, 'create']);
+    Route::get('/users/{id}', [UserController::class, 'show']);
 
 });
