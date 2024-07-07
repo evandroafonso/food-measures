@@ -25,9 +25,9 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json($this->userService->index());
+        return response()->json($this->userService->index($request));
     }
 
  /**
@@ -68,9 +68,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, $id)
     {
-        //
+        return response()->json($this->userService->update($request, $id));
     }
 
     /**

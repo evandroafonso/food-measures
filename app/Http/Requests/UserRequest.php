@@ -24,20 +24,30 @@ class UserRequest extends FormRequest
         ], 422));
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        return $this->isMethod('post') ? $this->createRules() : $this->updateRules();
+    }
 
-       $userId = $this->route('user');
+    private function createRules(): array
+    {
+        $userId = $this->route('user') ? $this->route('user')->id : null;
 
         return [
-            'name' => 'required',
+            'name' => 'required|string',
             'email' => 'required|email|unique:users,email,' . ($userId ? $userId->id : null),
             'password' => 'required|min:6'
+        ];
+    }
+
+    private function updateRules(): array
+    {
+        $userId = $this->route('user') ? $this->route('user')->id : null;
+
+        return [
+            'name' => 'required|string',
+            'email' => 'required' . ($userId ? $userId->id : null),
+            'password' => 'nullable|min:6'
         ];
     }
 

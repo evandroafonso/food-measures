@@ -28,11 +28,32 @@ abstract class BaseService
         }
     }
 
-    public function index()
+    public function update($request, $id)
     {
-        $entities = $this->model::all();
+        DB::beginTransaction();
+        try {
+            $entity = $this->model::findOrFail($id);
+            $entity->update($request->all());
+            DB::commit();
+            return $entity;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new CustomException("Erro: {$this->getModelName()} não cadastrado.");
+        }
+    }
+
+    public function index($request)
+    {
+        $query = $this->model::query();
+        if($request->has('active')){
+            $active = filter_var($request->query('active'), FILTER_VALIDATE_BOOLEAN);
+            $query->where('active', $active);
+        }
+
+        $entities = $query->get();
+
         if ($entities->isEmpty()) {
-            throw new CustomException("Erro: Nenhuma {$this->getModelNamePlural()} cadastrada na plataforma.");
+            throw new CustomException("Nenhum {$this->getModelNamePlural()} encontrado na plataforma.");
         }
         return $entities;
     }

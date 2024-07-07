@@ -17,6 +17,7 @@ Route::group([
     Route::get('/me',[AuthController::class, 'me'] );
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/users', [UserController::class, 'create']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/users/{id}', [UserController::class, 'show']);
 
 });
