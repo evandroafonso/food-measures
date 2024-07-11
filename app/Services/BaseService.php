@@ -67,7 +67,6 @@ abstract class BaseService
         return $entity;
     }
 
-
     abstract protected function getModelName();
     abstract protected function getModelNamePlural();
 

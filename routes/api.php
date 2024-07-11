@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UnitMeasurementController;
 
 Route::group([
 
@@ -19,5 +20,8 @@ Route::group([
     Route::post('/users', [UserController::class, 'create']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::post('/unit', [UnitMeasurementController::class, 'create']);
+    Route::get('/unit', [UnitMeasurementController::class, 'index']);
+
 
 });
