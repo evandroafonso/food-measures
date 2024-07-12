@@ -2,11 +2,7 @@
 
 namespace App\Services;
 
-use App\Exceptions\CustomException;
 use App\Models\User;
-use Exception;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserService extends BaseService
 {

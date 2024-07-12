@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -22,6 +23,6 @@ Route::group([
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::post('/unit', [UnitMeasurementController::class, 'create']);
     Route::get('/unit', [UnitMeasurementController::class, 'index']);
-
+    Route::post('/product', [ProductController::class, 'create']);
 
 });
