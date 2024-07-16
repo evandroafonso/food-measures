@@ -14,17 +14,8 @@ class Product extends Model
     protected $fillable = [
         'name',
         'active',
-        'unit_measurement_id',
         'user_id',
+        'average_weight_loss_percent',
     ];
-
-    protected $hidden = [
-        'unit_measurement_id',
-    ];
-
-    public function unitMeasurement()
-    {
-        return $this->belongsTo(UnitMeasurement::class);
-    }
 
 }

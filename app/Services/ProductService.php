@@ -19,9 +19,6 @@ class ProductService extends BaseService
         $user = JWTAuth::user();
         $data['user_id'] = $user->id;
         $product = parent::create($data);
-        $product = Product::with('unitMeasurement')->find($product->id);
-
-
         return $product;
     }
 
