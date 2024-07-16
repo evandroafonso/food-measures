@@ -24,5 +24,7 @@ Route::group([
     Route::post('/unit', [UnitMeasurementController::class, 'create']);
     Route::get('/unit', [UnitMeasurementController::class, 'index']);
     Route::post('/product', [ProductController::class, 'create']);
+    Route::post('/evento-measure', [ProductController::class, 'create']);
+
 
 });
