@@ -1,0 +1,21 @@
+{{ define "main" }}
+<header class="ld-page-header">
+  {{ with .Params.description }}
+  <p class="lead">{{ . }}</p>
+  {{ end }}
+</header>
+
+<div class="ld-content">
+  {{ .Content }} {{/* Mostra o texto do _index.md */}}
+</div>
+
+{{/* Lista apenas os filhos, sem incluir o próprio item pai */}} {{ $children :=
+.Sections }} {{ if gt (len $children) 0 }}
+<hr />
+<h2>Seções</h2>
+<ul>
+  {{ range $children.ByWeight }}
+  <li><a href="{{ .RelPermalink }}">{{ default .Title }}</a></li>
+  {{ end }}
+</ul>
+{{ end }} {{ end }}
